@@ -50,7 +50,7 @@ class Imadaem {
 
     const FILE_MODE = 0755;
     const INFO = 'info.json';
-    const LOG_FILE = 'log.csv';
+    const LOG_FILE = 'imadaem.log';
     const LOG_LEVEL = E_USER_NOTICE;
     protected $format;
     protected $identifier;
