@@ -50,8 +50,6 @@ class Imadaem {
 
     const FILE_MODE = 0755;
     const INFO = 'info.json';
-    const LOG_FILE = 'imadaem.log';
-    const LOG_LEVEL = E_USER_NOTICE;
     protected $format;
     protected $identifier;
     protected $isInfo;
@@ -65,13 +63,16 @@ class Imadaem {
 
     public function __construct($options)
     {
-        $this->log = new Log($this::LOG_LEVEL, $this::LOG_FILE);
-        $this->log->notice('__: ' . Date('c'));
         $options = array_merge(
             array(
                 'dstRoot' => '',
+                'logFile' => '',
+                'logLevel' => 0,
                 'srcRoot' => ''),
             $options);
+
+        $this->log = new Log($options['logLevel'], $options['logFile']);
+        $this->log->notice('__: ' . Date('c'));
 
         $this->dstRoot = $options['dstRoot'];
         $this->log->notice('dstRoot: "' . $this->dstRoot . '"');

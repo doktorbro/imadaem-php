@@ -7,6 +7,8 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])) {
     $imadaem = new Imadaem\Imadaem(array(
         'dstRoot' => 'api',
         'expires' => 7 * 24 * 60 * 60,
+        'logLevel' => E_USER_ERROR,
+        'expires' => 7 * 24 * 60 * 60,
         'srcRoot' => 'images'));
     $imadaem->run();
 }
