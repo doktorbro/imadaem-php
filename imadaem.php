@@ -91,7 +91,8 @@ class Imadaem {
     private function parseRequest()
     {
         $this->log->notice('Request: "' . $_SERVER['REQUEST_URI'] . '"');
-        $request = explode('/', ltrim($_SERVER['REQUEST_URI'], '/'));
+        $request = explode(DIRECTORY_SEPARATOR,
+            ltrim($_SERVER['REQUEST_URI'], DIRECTORY_SEPARATOR));
         if (in_array('', $request)) {
             return;
         }
