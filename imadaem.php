@@ -150,6 +150,7 @@ class Imadaem {
                 return;
             }
         }
+        return true;
     }
 
     public function run()
