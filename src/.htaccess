@@ -2,6 +2,6 @@
   RewriteEngine On
   RewriteBase /
   RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_URI} ^/api/(.*)\.(png|jpg)$
+  RewriteCond %{REQUEST_URI} ^/api/(.*)
   RewriteRule . /router.php [L]
 </IfModule>
