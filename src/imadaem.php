@@ -1,7 +1,6 @@
 <?php
 namespace Imadaem;
 
-
 class Log {
     protected $file;
     protected $level;
