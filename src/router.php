@@ -4,10 +4,12 @@ if (file_exists($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])) {
 } else {
     require 'imadaem.php';
 
-    $imadaem = new Imadaem\Imadaem(array(
-        'dstRoot' => 'api',
-        'expires' => 7 * 24 * 60 * 60,
-        'logLevel' => E_USER_ERROR,
-        'srcRoot' => 'images'));
+    $log = new Imadaem\Log(E_USER_NOTICE);
+    $imadaem = new Imadaem\Imadaem(
+        array(
+            'dstRoot' => 'api',
+            'expires' => 7 * 24 * 60 * 60,
+            'srcRoot' => 'images'),
+        $log);
     $imadaem->run();
 }

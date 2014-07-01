@@ -31,6 +31,7 @@ class Log {
                 return error_log($msg . PHP_EOL, 3, $this->file);
             }
         }
+        return false;
     }
 
     public function error($msg) {
@@ -61,17 +62,15 @@ class Imadaem {
     protected $srcFile;
     protected $srcRoot;
 
-    public function __construct($options)
+    public function __construct($options, Log $log = null)
     {
         $options = array_merge(
             array(
                 'dstRoot' => '',
-                'logFile' => '',
-                'logLevel' => 0,
                 'srcRoot' => ''),
             $options);
 
-        $this->log = new Log($options['logLevel'], $options['logFile']);
+        $this->log = ($log) ?: new Log();
         $this->log->notice('__: ' . Date('c'));
 
         $this->dstRoot = $options['dstRoot'];
