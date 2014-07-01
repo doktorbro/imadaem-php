@@ -10,13 +10,13 @@ class Log {
 
     public function __construct($level = E_USER_ERROR, $file = '')
     {
+        $this->startTime = microtime(true);
         $this->file = $file;
         $this->level = $level;
         $this->levelText = array(
             E_USER_ERROR => 'E',
             E_USER_WARNING => 'W',
             E_USER_NOTICE => 'N');
-        $this->startTime = microtime(true);
     }
 
     protected function message($level, $msg) {
