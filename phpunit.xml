@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="src/Penibelst/Imadaem/Tests/bootstrap.php" colors="true" coverage-text="true">
+<phpunit bootstrap="src/Penibelst/Imadaem/Tests/bootstrap.php" colors="true">
     <testsuites>
         <testsuite name="Imadaem Test Suite">
             <directory>./src/Penibelst/Imadaem/Tests/</directory>
@@ -13,7 +13,7 @@
 
     <filter>
         <whitelist>
-            <directory>./src/</directory>
+            <directory>./src/Penibelst/Imadaem</directory>
             <exclude>
                 <directory>./src/Penibelst/Imadaem/Tests</directory>
             </exclude>

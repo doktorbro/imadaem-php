@@ -1,59 +1,14 @@
 <?php
-namespace Imadaem;
+namespace Penibelst\Imadaem;
 
-class Log {
-    protected $file;
-    protected $level;
-    protected $levelText;
-    protected $startTime;
-
-    public function __construct($level = E_USER_ERROR, $file = '')
-    {
-        $this->startTime = microtime(true);
-        $this->file = $file;
-        $this->level = $level;
-        $this->levelText = array(
-            E_USER_ERROR => 'E',
-            E_USER_WARNING => 'W',
-            E_USER_NOTICE => 'N');
-    }
-
-    protected function message($level, $msg) {
-        if ($level <= $this->level) {
-            $msg = join(';', array(
-                sprintf('%.6f', microtime(true) - $this->startTime),
-                $this->levelText[$level],
-                $msg));
-            if (empty($this->file)) {
-                return error_log($msg);
-            } else {
-                return error_log($msg . PHP_EOL, 3, $this->file);
-            }
-        }
-        return false;
-    }
-
-    public function error($msg) {
-        return $this->message(E_USER_ERROR, $msg);
-    }
-
-    public function warning($msg) {
-        return $this->message(E_USER_WARNING, $msg);
-    }
-
-    public function notice($msg) {
-        return $this->message(E_USER_NOTICE, $msg);
-    }
-}
-
-class Imadaem {
+class Resizer {
 
     const FILE_MODE = 0755;
     const INFO = 'info.json';
     protected $format;
     protected $identifier;
     protected $isInfo;
-    protected $log;
+    protected $logger;
     protected $quality;
     protected $region;
     protected $rotation;
@@ -61,7 +16,7 @@ class Imadaem {
     protected $srcFile;
     protected $srcRoot;
 
-    public function __construct($options, Log $log = null)
+    public function __construct($options, Logger $logger = null)
     {
         $options = array_merge(
             array(
@@ -69,14 +24,14 @@ class Imadaem {
                 'srcRoot' => ''),
             $options);
 
-        $this->log = ($log) ?: new Log();
-        $this->log->notice('__: ' . Date('c'));
+        $this->logger = ($logger) ?: new Logger();
+        $this->logger->notice('__: ' . Date('c'));
 
         $this->dstRoot = $options['dstRoot'];
-        $this->log->notice('dstRoot: "' . $this->dstRoot . '"');
+        $this->logger->notice('dstRoot: "' . $this->dstRoot . '"');
 
         $this->srcRoot = $options['srcRoot'];
-        $this->log->notice('srcRoot: "' . $this->srcRoot . '"');
+        $this->logger->notice('srcRoot: "' . $this->srcRoot . '"');
     }
 
     public function dump()
@@ -88,7 +43,7 @@ class Imadaem {
 
     private function parseRequest()
     {
-        $this->log->notice('Request: "' . $_SERVER['REQUEST_URI'] . '"');
+        $this->logger->notice('Request: "' . $_SERVER['REQUEST_URI'] . '"');
         $request = explode(DIRECTORY_SEPARATOR,
             ltrim($_SERVER['REQUEST_URI'], DIRECTORY_SEPARATOR));
         if (in_array('', $request)) {
@@ -102,7 +57,7 @@ class Imadaem {
         $offset = (empty($this->dstRoot)) ? 0 : 1;
 
         $this->identifier = $request[$offset];
-        $this->log->notice('Identifier: "' . $this->identifier . '"');
+        $this->logger->notice('Identifier: "' . $this->identifier . '"');
 
         //  Image Information Request
         if (count($request) < $offset + 2) {
@@ -132,19 +87,19 @@ class Imadaem {
             $_SERVER['DOCUMENT_ROOT'],
             $this->srcRoot,
             urldecode($this->identifier)));
-        $this->log->notice('srcFile: "' . $srcFile . '"');
+        $this->logger->notice('srcFile: "' . $srcFile . '"');
         if (! file_exists($srcFile)) return;
-        $this->log->notice('Source file exists.');
+        $this->logger->notice('Source file exists.');
 
         if ($this->size == 'full') {
             $dir = $this->dstDir();
             if ((! is_dir($dir)) && (! mkdir($dir, $this::FILE_MODE, true))) {
-                $this->log->error('Cannot create directory');
+                $this->logger->error('Cannot create directory');
                 return;
             }
 
             if (! copy($srcFile, $this->dstFile())) {
-                $this->log->error('Cannot copy file');
+                $this->logger->error('Cannot copy file');
                 return;
             }
         }
