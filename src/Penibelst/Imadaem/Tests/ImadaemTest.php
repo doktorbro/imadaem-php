@@ -7,4 +7,3 @@ class ImadaemTest extends PHPUnit_Framework_TestCase
         $this->assertEquals('info.json', Imadaem::INFO);
     }
 }
-
