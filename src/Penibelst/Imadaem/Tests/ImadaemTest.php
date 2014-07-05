@@ -2,9 +2,9 @@
 
 class ImadaemTest extends PHPUnit_Framework_TestCase
 {
-    public function testOne()
+    public function testInfoName()
     {
-        $this->assertEquals(1, 1);
+        $this->assertEquals('info.json', Imadaem::INFO);
     }
 }
 
