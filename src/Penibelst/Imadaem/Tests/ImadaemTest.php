@@ -1,6 +1,6 @@
 <?php
 
-require '../Imadaem.php';
+require './../Imadaem.php';
 
 class ImadaemTest extends PHPUnit_Framework_TestCase
 {
