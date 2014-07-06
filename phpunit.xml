@@ -1,25 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit
-    bootstrap="tests/bootstrap.php"
-    colors="true"
->
+<phpunit bootstrap="tests/bootstrap.php" colors="true">
     <testsuites>
-        <testsuite name="Imadaem Test Suite">
-            <directory>./src/Penibelst/Imadaem/Tests/</directory>
+        <testsuite name="Penibelst Test Suite">
+            <directory>./tests/Penibelst/</directory>
         </testsuite>
     </testsuites>
+
+    <filter>
+        <whitelist>
+            <directory>./src/Penibelst/</directory>
+        </whitelist>
+    </filter>
 
     <logging>
         <log type="coverage-text" target="php://stdout"/>
     </logging>
-
-    <filter>
-        <whitelist>
-            <directory>./src/Penibelst/Imadaem</directory>
-            <exclude>
-                <directory>./src/Penibelst/Imadaem/Tests</directory>
-            </exclude>
-        </whitelist>
-    </filter>
 </phpunit>

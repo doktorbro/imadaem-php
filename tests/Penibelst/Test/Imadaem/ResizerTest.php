@@ -1,5 +1,4 @@
 <?php
-require_once 'src/Penibelst/Imadaem/Resizer.php';
 
 class ResizerTest extends PHPUnit_Framework_TestCase
 {
