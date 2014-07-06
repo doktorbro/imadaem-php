@@ -2,8 +2,8 @@
 if (file_exists($_SERVER['DOCUMENT_ROOT'] . $_SERVER['REQUEST_URI'])) {
     return false;
 } else {
-    require_once '../src/Penibelst/Imadaem/Resizer.php';
-    require_once '../src/Penibelst/Imadaem/Logger.php';
+    require_once '../src/Resizer.php';
+    require_once '../src/Logger.php';
 
     $logger = new Penibelst\Imadaem\Logger(E_USER_NOTICE);
     $resizer = new Penibelst\Imadaem\Resizer(
