@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<phpunit bootstrap="src/Penibelst/Imadaem/Tests/bootstrap.php" colors="true">
+<phpunit
+    bootstrap="tests/bootstrap.php"
+    colors="true"
+>
     <testsuites>
         <testsuite name="Imadaem Test Suite">
             <directory>./src/Penibelst/Imadaem/Tests/</directory>
