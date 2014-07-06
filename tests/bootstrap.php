@@ -2,9 +2,9 @@
 
 function loader($class)
 {
-    $file = 'src' . DIRECTORY_SEPARATOR .
-        str_replace('\\', DIRECTORY_SEPARATOR, $class) .
-        '.php';
+    $file = implode(DIRECTORY_SEPARATOR, array_merge(
+        array(__DIR__, '..', 'src'),
+        explode('\\', $class))) . '.php';
     if (file_exists($file)) {
         require $file;
     }
