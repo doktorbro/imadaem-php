@@ -2,7 +2,7 @@
 
 function loader($class)
 {
-    $file = './src/' . str_replace('\\', '/', $class) . '.php';
+    $file = __DIR__ . '/../src/' . str_replace('\\', '/', $class) . '.php';
     if (file_exists($file)) {
         require $file;
     }
