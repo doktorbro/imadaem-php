@@ -20,7 +20,7 @@ class Logger {
 
     protected function message($level, $msg) {
         if ($level <= $this->level) {
-            $msg = join(';', array(
+            $msg = implode(';', array(
                 sprintf('%.6f', microtime(true) - $this->startTime),
                 $this->levelText[$level],
                 $msg));

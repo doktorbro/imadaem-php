@@ -83,7 +83,7 @@ class Resizer {
 
     private function resizeImage()
     {
-        $srcFile = join(DIRECTORY_SEPARATOR, array(
+        $srcFile = implode(DIRECTORY_SEPARATOR, array(
             $_SERVER['DOCUMENT_ROOT'],
             $this->srcRoot,
             urldecode($this->identifier)));
@@ -114,13 +114,13 @@ class Resizer {
     protected function dstFile()
     {
         if ($this->isInfo) {
-            return join(DIRECTORY_SEPARATOR, array(
+            return implode(DIRECTORY_SEPARATOR, array(
                 $_SERVER['DOCUMENT_ROOT'],
                 $this->dstRoot,
                 urldecode($this->identifier),
                 $this->INFO));
         } else {
-            return join(DIRECTORY_SEPARATOR, array(
+            return implode(DIRECTORY_SEPARATOR, array(
                 $_SERVER['DOCUMENT_ROOT'],
                 $this->dstRoot,
                 urldecode($this->identifier),
