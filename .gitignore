@@ -1,2 +1,4 @@
-api/
+composer.lock
+composer.phar
+vendor/
 *.log
