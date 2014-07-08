@@ -14,7 +14,7 @@
     ],
     "require": {
         "php": ">=5.3.2",
-        "imagine/Imagine": "v0.5.0"
+        "imagine/Imagine": "v0.6.*"
     },
     "autoload": {
         "psr-4": { "Penibelst\\Imadaem\\": "src/" }
