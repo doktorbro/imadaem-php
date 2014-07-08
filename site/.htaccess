@@ -1,7 +1,0 @@
-<IfModule mod_rewrite.c>
-  RewriteEngine On
-  RewriteBase /
-  RewriteCond %{REQUEST_FILENAME} !-f
-  RewriteCond %{REQUEST_URI} ^/api/(.*)
-  RewriteRule . /router.php [L]
-</IfModule>
